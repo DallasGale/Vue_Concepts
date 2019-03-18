@@ -15,9 +15,8 @@
     <img v-bind:src="heroImage" />
 ```
 
-### Shorthand syntax
 
-**Attributes**
+Shorthand syntax
 ```html
     <div :img='' />
     <div :alt='' />
@@ -32,7 +31,7 @@
 
 ## Conditional rendering
 
-**v-if-else-if**
+v-if-else-if
 > Removes/adds the element to the DOM
 
 ```javascript
@@ -45,7 +44,7 @@
     <div v-else="inStock"></div>
 ```
 
-**v-show**
+v-show
 > Simply hides the element in the DOM with inline style 
 ```javascript
     var inStock = false
@@ -58,8 +57,7 @@
 
 ## Lists
 
-**Example**
-
+Example
 ```javascript
     gallery: [
         {
@@ -93,9 +91,24 @@
 ## Event Handling
 
 ```html
-<button v-on:click="cart += 1">Add to cart</button>
-<button v-on:click="cart = 0">Clear cart</button>
-
+<button v-on:click="addToCart">Add to cart</button>
+<button v-on:click="clearCart">Clear cart</button>
 Cart ({{ cart }})
+```
+
+Add methods to the methods object.
+```javascript 
+const app = new Vue({
+    el: '#app',
+    data: {...},
+    // Methods
+    methods: {
+        addToCart: function() {
+            this.cart += 1
+        },
+        clearCart: function() {
+            this.cart = 0
+        }
+    }
 
 ```

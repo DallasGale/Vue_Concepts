@@ -8,10 +8,8 @@
         <div id="app">
             <h1>Vue</h1>
 
-
-
-            <button v-on:click="cart += 1">Add to cart</button>
-            <button v-on:click="cart = 0">Clear cart</button>
+            <button v-on:click="addToCart">Add to cart</button>
+            <button v-on:click="clearCart">Clear cart</button>
             Cart ({{ cart }})<br />
 
 
@@ -80,6 +78,14 @@
                         }
                     ],
                     cart: 0
+                },
+                methods: {
+                    addToCart: function() {
+                        this.cart += 1
+                    },
+                    clearCart: function() {
+                        this.cart = 0
+                    }
                 }
             })    
 
