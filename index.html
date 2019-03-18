@@ -1,0 +1,88 @@
+<html>
+    <head>
+        <title>Vue</title>
+    </head>
+
+    <body>
+
+        <div id="app">
+            <h1>Vue</h1>
+
+
+
+            <button v-on:click="cart += 1">Add to cart</button>
+            <button v-on:click="cart = 0">Clear cart</button>
+            Cart ({{ cart }})<br />
+
+
+            <h2>Lists:</h2>
+            <ul>
+                <li v-for="items in gallery" :key="items.id">
+                    {{items.name}} - ${{items.price}}
+                </li>
+            </ul>
+
+
+
+
+            <h2>{{product}}</h2>
+
+            <div style="width: 49%;">
+                <h2>Inventory: {{inventory}}</h2>
+                <div v-if="inventory >= 2">
+                    <a :href="url" />
+                        <img style="width: 100%;" :src="image" :alt="altText" :class="className" />
+                    </a>
+                </div>
+
+                <div v-else-if="inventory === 1">
+                    Only 1 left!!
+                    <a :href="url" />
+                        <img style="width: 100%;" :src="image" :alt="altText" :class="className" />
+                    </a>
+                </div>
+                
+                <div v-else="inStock">
+                    Image has been sold
+                </div>
+            </div>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+        <!-- <script src="./app.js"></script> -->
+        <script>
+        
+            const app = new Vue({
+                el: '#app',
+                data: {
+                    product: 'Ocean',
+                    image: './assets/hero.jpg',
+                    className: 'hero',
+                    altText: 'ocean at dusk',
+                    url: 'https://images.unsplash.com/photo-1552671641-8cbdd17c492e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=701&q=80',
+                    inStock: true,
+                    inventory: 32,
+                    gallery: [
+                        {
+                            id: 0,
+                            name: 'Portrait #1',
+                            price: 325532,
+                        },
+                        {
+                            id: 1,
+                            name: 'Portrait #2',
+                            price: 325532,
+                        },
+                        {
+                            id: 2,
+                            name: 'Portrait #3',
+                            price: 325532,
+                        }
+                    ],
+                    cart: 0
+                }
+            })    
+
+        </script>
+    </body>
+</html>
