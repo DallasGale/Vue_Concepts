@@ -2,48 +2,72 @@
     <head>
         <title>Vue</title>
     </head>
+    
+    
+    <style>
+        .square {
+            border: 2px solid transparent;
+            height: 50px;
+            width: 50px;
+        }
+    </style>
 
     <body>
 
         <div id="app">
-            <h1>Vue</h1>
+            <table width="100%" cellpadding="20">
+                <tr>
+                    <td width="40%" valign="top">
+                        <h1>Vue</h1>
+                        <hr />
 
-            <button v-on:click="addToCart">Add to cart</button>
-            <button v-on:click="clearCart">Clear cart</button>
-            Cart ({{ cart }})<br />
+                        <h2>Variants</h2>
+                        <div v-for="variant in variants">
+                            <div class="square" :style="{ backgroundColor: variant.variantHex }" @mouseover="updateImage(variant.variantImg, variant.variantName)"></div>
+                        </div>
+
+                        <hr />
+
+                        <button v-on:click="addToCart">Add to cart</button>
+                        <button v-on:click="clearCart">Clear cart</button>
+                        Cart ({{ cart }})
+
+                        <hr />
+
+                        <h2>Lists:</h2>
+                        <ul>
+                            <li v-for="items in gallery" :key="items.id">
+                                {{items.name}} - ${{items.price}}
+                            </li>
+                        </ul>
+                    </td>
 
 
-            <h2>Lists:</h2>
-            <ul>
-                <li v-for="items in gallery" :key="items.id">
-                    {{items.name}} - ${{items.price}}
-                </li>
-            </ul>
+                    <td>
+                        <h2>{{product}}</h2>
 
+                        <div style="width: 100%;">
+                            <h2>Inventory: {{inventory}}</h2>
+                            <div v-if="inventory >= 2">
+                                <a :href="url" />
+                                    <img style="width: 100%;" :src="image" :alt="altText" :class="className" />
+                                </a>
+                            </div>
 
-
-
-            <h2>{{product}}</h2>
-
-            <div style="width: 49%;">
-                <h2>Inventory: {{inventory}}</h2>
-                <div v-if="inventory >= 2">
-                    <a :href="url" />
-                        <img style="width: 100%;" :src="image" :alt="altText" :class="className" />
-                    </a>
-                </div>
-
-                <div v-else-if="inventory === 1">
-                    Only 1 left!!
-                    <a :href="url" />
-                        <img style="width: 100%;" :src="image" :alt="altText" :class="className" />
-                    </a>
-                </div>
-                
-                <div v-else="inStock">
-                    Image has been sold
-                </div>
-            </div>
+                            <div v-else-if="inventory === 1">
+                                Only 1 left!!
+                                <a :href="url" />
+                                    <img style="width: 100%;" :src="image" :alt="altText" :class="className" />
+                                </a>
+                            </div>
+                            
+                            <div v-else="inStock">
+                                Image has been sold
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
         </div>
 
         <script src="https://cdn.jsdelivr.net/npm/vue"></script>
@@ -77,14 +101,33 @@
                             price: 325532,
                         }
                     ],
+                    variants: [
+                        {
+                            variantName: 'Dark',
+                            variantHex: '#000000',
+                            variantId: 'dark__01',
+                            variantImg: './assets/variant__dark.jpg'
+                        },
+                        {
+                            variantName: 'Bright',
+                            variantHex: 'magenta',
+                            variantId: 'bright__01',
+                            variantImg: './assets/variant__bright.jpg'
+                        }
+                    ],
                     cart: 0
                 },
                 methods: {
-                    addToCart: function() {
+                    addToCart() {
                         this.cart += 1
                     },
-                    clearCart: function() {
+                    clearCart() {
                         this.cart = 0
+                    },
+                    updateImage(img, product, style) {
+                        this.image = img,
+                        this.product = product,
+                        this.style = 'hovered'
                     }
                 }
             })    

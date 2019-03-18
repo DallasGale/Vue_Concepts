@@ -89,10 +89,9 @@ Example
 
 
 ## Event Handling
-
 ```html
-<button v-on:click="addToCart">Add to cart</button>
-<button v-on:click="clearCart">Clear cart</button>
+<button @click="addToCart">Add to cart</button>
+<button @click="clearCart">Clear cart</button>
 Cart ({{ cart }})
 ```
 
@@ -103,12 +102,30 @@ const app = new Vue({
     data: {...},
     // Methods
     methods: {
-        addToCart: function() {
+        addToCart() {
             this.cart += 1
         },
-        clearCart: function() {
+        clearCart() {
             this.cart = 0
         }
     }
 
+```
+
+Mouseover
+```html
+    <p @mouseover="myMethod()"></p>
+```
+
+
+## Style bindings
+```javascript
+    const myStyles = {
+        color: 'red',
+        backgroundColor: 'blue'
+    }
+```
+
+```html
+    <div :style="{ myStyles }"></div>
 ```
